@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC ZEN — Студия компьютерного совершенства</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <div class="background-gradient"></div>
+
+    <nav class="glass-nav">
+        <div class="container nav-content">
+            <div class="logo">PC<span>ZEN</span></div>
+            <div class="nav-links">
+                <a href="#prices">Прайс</a>
+                <a href="#before-after">До/После</a>
+                <a href="#config">Конфигуратор</a>
+                <a href="#contact" class="nav-cta btn-neon">Заказать</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text fade-in">
+                <span class="sub-heading">PC ZEN</span>
+                <h1>Студия компьютерного совершенства</h1>
+                <p class="description">
+                    Эстетика мощности и тишины. Премиальная сборка и обслуживание компьютерных систем с вниманием к каждой детали.
+                </p>
+                <div class="hero-btns">
+                    <a href="#config" class="btn-primary">Конфигуратор</a>
+                    <a href="#prices" class="btn-secondary">Прайс услуг</a>
+                </div>
+            </div>
+            <div class="hero-image fade-in">
+                <img src="https://hyperpc.kz/images/product/dynamic/evo-rgb/gallery/lian-li-dynamic-evo-rgb-black-gallery-01.jpg" alt="Премиальная сборка ПК">
+            </div>
+        </div>
+    </header>
+
+    <section id="prices" class="reveal">
+        <div class="container">
+            <h2 class="section-title">Прозрачный прайс-лист</h2>
+            <div class="tabs">
+                <button class="tab-btn active" onclick="openTab(event, 'repair')">
+                    <i data-lucide="wrench"></i> Ремонт
+                </button>
+                <button class="tab-btn" onclick="openTab(event, 'service')">
+                    <i data-lucide="cleaning-services"></i> Обслуживание
+                </button>
+                <button class="tab-btn" onclick="openTab(event, 'build')">
+                    <i data-lucide="cpu"></i> Сборка
+                </button>
+            </div>
+
+            <div id="repair" class="tab-content active glass-card">
+                <div class="price-item">
+                    <span>Диагностика</span>
+                    <strong>0 ₽ <small>(при ремонте)</small></strong>
+                </div>
+                <div class="price-item">
+                    <span>Замена видеокарты</span>
+                    <strong>1 200 ₽</strong>
+                </div>
+                <div class="price-item">
+                    <span>Восстановление данных</span>
+                    <strong>от 3 000 ₽</strong>
+                </div>
+            </div>
+
+            <div id="service" class="tab-content glass-card">
+                <div class="price-item">
+                    <span>Полная чистка</span>
+                    <strong>2 500 ₽</strong>
+                </div>
+                <div class="price-item">
+                    <span>Замена термопасты CPU/GPU</span>
+                    <strong>1 500 ₽</strong>
+                </div>
+                <div class="price-item">
+                    <span>Оптимизация ОС</span>
+                    <strong>1 800 ₽</strong>
+                </div>
+            </div>
+
+            <div id="build" class="tab-content glass-card">
+                <div class="price-item">
+                    <span>Базовая сборка</span>
+                    <strong>от 5 000 ₽</strong>
+                </div>
+                <div class="price-item">
+                    <span>Кастомная СВО</span>
+                    <strong>от 12 000 ₽</strong>
+                </div>
+                <div class="price-item">
+                    <span>Подбор комплектующих</span>
+                    <strong>2 000 ₽</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="before-after" class="reveal">
+        <div class="container">
+            <h2 class="section-title">До и После: дайте покою груды пыли</h2>
+            <div class="before-after-slider glass-card">
+                <div class="image-container">
+                    <img src="https://cs14.pikabu.ru/post_img/2024/04/14/9/1713109260114344343.jpg" alt="До чистки" class="before-img">
+                    <img src="https://vilianov.com/wp-content/uploads/2013/09/kompyuter-vilianov.jpg" alt="После чистки" class="after-img">
+                </div>
+                <input type="range" min="0" max="100" value="50" class="slider" oninput="moveSlider(this)">
+                <div class="slider-line"></div>
+                <div class="slider-button"></div>
+            </div>
+            <p class="slider-caption">Передвиньте ползунок, чтобы увидеть разницу до и после профессиональной чистки.</p>
+        </div>
+    </section>
+
+    <section id="config" class="config-section reveal">
+        <div class="container config-grid">
+            <div class="config-info">
+                <h2 class="section-title">Конструктор мечты</h2>
+                <p>Выберите желаемые параметры, и мы рассчитаем примерную стоимость вашего будущего сетапа.</p>
+                <div class="total-display glass-card">
+                    <span class="label">Итоговая сумма:</span>
+                    <span id="res-price">0</span> ₽
+                </div>
+            </div>
+            <div class="config-form glass-card">
+                <div class="input-group">
+                    <label>Назначение ПК</label>
+                    <select id="type" onchange="calculate()">
+                        <option value="5000">Офисный (работа)</option>
+                        <option value="15000">Игровой Entry (бюджетный)</option>
+                        <option value="45000">Игровой Ultra (топовый)</option>
+                        <option value="60000">Workstation (рендеринг/видео)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Дополнительно</label>
+                    <div class="check-group">
+                        <input type="checkbox" id="rgb" onchange="calculate()"> <label for="rgb">RGB подсветка (+5 000 ₽)</label>
+                    </div>
+                    <div class="check-group">
+                        <input type="checkbox" id="cooling" onchange="calculate()"> <label for="cooling">Кастомное СВО (+10 000 ₽)</label>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Срочность</label>
+                    <input type="range" id="urgency" min="1" max="3" value="1" oninput="calculate()">
+                    <div class="range-labels"><span>Спокойно</span><span>Быстро</span><span>Максимально!</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container footer-grid">
+            <div class="footer-info">
+                <h3>Свяжитесь с нами</h3>
+                <p>Готовы создать ваш идеальный ПК? Напишите или позвоните нам.</p>
+                <div class="contact-links">
+                    <a href="https://t.me/yourtelegram" target="_blank" class="social-card btn-neon">
+                        <i data-lucide="send"></i> Telegram
+                    </a>
+                    <a href="https://wa.me/70000000000" target="_blank" class="social-card btn-neon">
+                        <i data-lucide="message-square"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+            <form class="contact-form glass-card">
+                <input type="text" placeholder="Ваше имя" required>
+                <input type="tel" placeholder="+7 (___) ___-__-__" required>
+                <textarea placeholder="Опишите ваш запрос..."></textarea>
+                <button type="submit" class="btn-primary btn-neon">Отправить заявку</button>
+            </form>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 PC ZEN. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons(); // Инициализация иконок Lucide
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
